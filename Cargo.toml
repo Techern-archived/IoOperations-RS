@@ -2,7 +2,7 @@
 name = "io_operations"
 version = "0.0.0"
 authors = ["Cruz Julian Bishop <cruzjbishop@gmail.com>"]
-description = "Placeholder for a new crate in less than 24 hours"
+description = "Placeholder for a crate providing I/O operations"
 
 repository = "https://github.com/Techern/IoOperations-RS"
 readme = "README.md"
