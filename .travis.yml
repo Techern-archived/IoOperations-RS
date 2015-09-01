@@ -19,10 +19,11 @@ script:
   travis-cargo test &&
   travis-cargo --only nightly bench &&
   travis-cargo --only stable doc
-#after_success:
-#- travis-cargo --only stable doc-upload
-#   measure code coverage and upload to coveralls.io
-#- travis-cargo coveralls --no-sudo
+after_success:
+- travis-cargo --only stable doc-upload
+  # measure code coverage and upload to coveralls.io
+- travis-cargo coveralls --no-sudo
 env:
   global:
   - TRAVIS_CARGO_NIGHTLY_FEATURE=""
+  - secure: IhiXTfWqa5SnkNlwK4GgUQFjhGX/944jz7IIY4O79BhPAE76cGz16bhHXbTVnHSQYoT2Nc+dRQjZznj9LYrF3n3jFqahvfWjNMrqe7TjDEIz7+DtNy8OK8jXIC18hr6ch9vahiO/TM3+0fCaK8hw1u+Nn3QtYP1m2GemX/SOs9TbMxQddmA6YrWKf0385IBA43o5EGqbAQDOMIxrOHGiwA4QyBIJx7GntbI7Izs8HHwpih5PfPmVjbS0eQHzxbwk6EcUx1dV6dAvua+Cb9KTZ3WkSO2kkgwoD1QDLeR4bKlQzv8K39+3mZ/QfA1J9dnaZxT3TeCdnktkkkSF1ef+FxT7bm+EpjcOV1vPo+VZ5fNIxSJUTWJarfAYbSbI+gM+ctUxveVh6zgQQrmfpWLAIeVKc4NsSeWFmz4gce1Mle2DVJiBFlKtFqjVGE7u2rFMV2MVacfYHJjWmx/UBoHmxsjiTVoSUzXuIOAsFwuju6Tp1IBgyLekPMgiZBPaFwZZ2B6ur6RjfirwppsDZd0uopRItzEy4TTiTOtQWak8UjifWamhQFYkQLqJ8ctM1prIrAMXSh9Eu8GdAnxZDo+2Djzph50OUUIhXjhl1ORyP1c+xbfS6EgDcDDWu1fyydDmklBlIrFAt3mVZm2cYAOdeedhgo4ayDEDQ01LIl4f8vE=
