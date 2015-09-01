@@ -1,8 +1,8 @@
 [package]
 name = "io_operations"
-version = "0.1.0-pre"
+version = "0.1.0"
 authors = ["Cruz Julian Bishop <cruzjbishop@gmail.com>"]
-description = "Placeholder for a crate providing I/O operations"
+description = "Provides common I/O operations"
 
 repository = "https://github.com/Techern/IoOperations-RS"
 documentation = "http://techern.github.io/IoOperations-RS"
