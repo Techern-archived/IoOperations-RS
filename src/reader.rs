@@ -2,6 +2,7 @@
 
 use std::io::Read;
 
+/// Extends the Read trait to provide common I/O reader operations
 pub trait Reader : Read {
 
     /// Reads an unsigned byte from this Reader

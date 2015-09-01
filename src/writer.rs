@@ -3,6 +3,7 @@
 use std::io::Write;
 use std::io::Result;
 
+/// Extends the Write trait to provide common I/O writer operations
 pub trait Writer : Write {
 
     /// Writes an unsigned byte to this Writer
