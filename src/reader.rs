@@ -384,3 +384,138 @@ pub trait Reader : Read {
 
 impl Reader for ::std::io::Cursor<Vec<u8>> { }
 impl Reader for ::std::net::TcpStream { }
+
+#[cfg(test)]
+mod tests {
+
+    use super::Reader;
+
+    use std::io::Cursor;
+
+    #[test]
+    fn test_read_empty_u8() {
+
+        let mut vector = Cursor::new(vec![0u8; 0]);
+
+        assert!(vector.read_unsigned_byte().is_err());
+
+    }
+
+    #[test]
+    fn test_read_empty_i8() {
+
+        let mut vector = Cursor::new(vec![0u8; 0]);
+
+        assert!(vector.read_signed_byte().is_err());
+
+    }
+
+    #[test]
+    fn test_read_empty_le_u16() {
+
+        let mut vector = Cursor::new(vec![0u8; 0]);
+
+        assert!(vector.read_unsigned_le_short().is_err());
+
+    }
+
+    #[test]
+    fn test_read_empty_le_i16() {
+
+        let mut vector = Cursor::new(vec![0u8; 0]);
+
+        assert!(vector.read_signed_le_short().is_err());
+
+    }
+
+    #[test]
+    fn test_read_empty_be_u16() {
+
+        let mut vector = Cursor::new(vec![0u8; 0]);
+
+        assert!(vector.read_unsigned_be_short().is_err());
+
+    }
+
+    #[test]
+    fn test_read_empty_be_i16() {
+
+        let mut vector = Cursor::new(vec![0u8; 0]);
+
+        assert!(vector.read_signed_be_short().is_err());
+
+    }
+
+    #[test]
+    fn test_read_empty_be_u32() {
+
+        let mut vector = Cursor::new(vec![0u8; 0]);
+
+        assert!(vector.read_unsigned_be_int().is_err());
+
+    }
+
+    #[test]
+    fn test_read_empty_be_i32() {
+
+        let mut vector = Cursor::new(vec![0u8; 0]);
+
+        assert!(vector.read_signed_be_int().is_err());
+
+    }
+
+    #[test]
+    fn test_read_empty_le_u32() {
+
+        let mut vector = Cursor::new(vec![0u8; 0]);
+
+        assert!(vector.read_unsigned_le_int().is_err());
+
+    }
+
+    #[test]
+    fn test_read_empty_le_i32() {
+
+        let mut vector = Cursor::new(vec![0u8; 0]);
+
+        assert!(vector.read_signed_le_int().is_err());
+
+    }
+
+    #[test]
+    fn test_read_empty_be_u64() {
+
+        let mut vector = Cursor::new(vec![0u8; 0]);
+
+        assert!(vector.read_unsigned_be_long().is_err());
+
+    }
+
+    #[test]
+    fn test_read_empty_be_i64() {
+
+        let mut vector = Cursor::new(vec![0u8; 0]);
+
+        assert!(vector.read_signed_be_long().is_err());
+
+    }
+
+    #[test]
+    fn test_read_empty_le_u64() {
+
+        let mut vector = Cursor::new(vec![0u8; 0]);
+
+        assert!(vector.read_unsigned_le_long().is_err());
+
+    }
+
+    #[test]
+    fn test_read_empty_le_i64() {
+
+        let mut vector = Cursor::new(vec![0u8; 0]);
+
+        assert!(vector.read_signed_le_long().is_err());
+
+    }
+
+}
