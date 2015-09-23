@@ -1,12 +1,12 @@
 //! Reading I/O operations
 
-use std::io::Read;
+use std::io::{Read, Error, ErrorKind};
 
 /// Extends the Read trait to provide common I/O reader operations
 pub trait Reader : Read {
 
     /// Reads an unsigned byte from this Reader
-    fn read_unsigned_byte(&mut self) -> Result<u8, &'static str> {
+    fn read_unsigned_byte(&mut self) -> Result<u8, Error> {
 
         let mut raw_buffer = vec![0u8; 1];
 
@@ -16,12 +16,11 @@ pub trait Reader : Read {
                 if count == 1 {
                     return Ok(raw_buffer[0]);
                 } else {
-                    return Err("Could not read one byte")
+                    return Err(Error::new(ErrorKind::Other, "Could not read one byte"));
                 }
             },
             Err(error) => {
-                error!("Got an error while reading a byte! {}", error);
-                return Err("Error while reading one byte, check log output");
+                return Err(error);
             }
 
         }
@@ -29,7 +28,7 @@ pub trait Reader : Read {
     }
 
     /// Reads a signed byte from this Reader
-    fn read_signed_byte(&mut self) -> Result<i8, &'static str> {
+    fn read_signed_byte(&mut self) -> Result<i8, Error> {
 
         let mut raw_buffer = vec![0u8; 1];
 
@@ -39,12 +38,11 @@ pub trait Reader : Read {
                 if count == 1 {
                     return Ok(raw_buffer[0] as i8);
                 } else {
-                    return Err("Could not read one byte")
+                    return Err(Error::new(ErrorKind::Other, "Could not read one byte"));
                 }
             },
             Err(error) => {
-                error!("Got an error while reading a byte! {}", error);
-                return Err("Error while reading one byte, check log output");
+                return Err(error);
             }
 
         }
@@ -52,7 +50,7 @@ pub trait Reader : Read {
     }
 
     /// Reads an unsigned big-endian short from this Reader
-    fn read_unsigned_be_short(&mut self) -> Result<u16, &'static str> {
+    fn read_unsigned_be_short(&mut self) -> Result<u16, Error> {
 
         let mut raw_buffer = vec![0u8; 2];
 
@@ -65,12 +63,11 @@ pub trait Reader : Read {
                         raw_buffer[1] as u16
                     );
                 } else {
-                    return Err("Could not read an unsigned BE short")
+                    return Err(Error::new(ErrorKind::Other, "Could not read two bytes"));
                 }
             },
             Err(error) => {
-                error!("Got an error while reading an unsigned BE short! {}", error);
-                return Err("Error while reading an unsigned BE short, check log output");
+                return Err(error);
             }
 
         }
@@ -78,7 +75,7 @@ pub trait Reader : Read {
     }
 
     /// Reads an unsigned little-endian short from this Reader
-    fn read_unsigned_le_short(&mut self) -> Result<u16, &'static str> {
+    fn read_unsigned_le_short(&mut self) -> Result<u16, Error> {
 
         let mut raw_buffer = vec![0u8; 2];
 
@@ -91,12 +88,11 @@ pub trait Reader : Read {
                         ((raw_buffer[1] as u16) << 8)
                     );
                 } else {
-                    return Err("Could not read an unsigned LE short")
+                    return Err(Error::new(ErrorKind::Other, "Could not read two bytes"));
                 }
             },
             Err(error) => {
-                error!("Got an error while reading an unsigned LE short! {}", error);
-                return Err("Error while reading an unsigned LE short, check log output");
+                return Err(error);
             }
 
         }
@@ -104,7 +100,7 @@ pub trait Reader : Read {
     }
 
     /// Reads a signed big-endian short from this Reader
-    fn read_signed_be_short(&mut self) -> Result<i16, &'static str> {
+    fn read_signed_be_short(&mut self) -> Result<i16, Error> {
 
         let mut raw_buffer = vec![0u8; 2];
 
@@ -117,12 +113,11 @@ pub trait Reader : Read {
                         raw_buffer[1] as i16
                     );
                 } else {
-                    return Err("Could not read a signed BE short")
+                    return Err(Error::new(ErrorKind::Other, "Could not read two bytes"));
                 }
             },
             Err(error) => {
-                error!("Got an error while reading a signed BE short! {}", error);
-                return Err("Error while reading a signed BE short, check log output");
+                return Err(error);
             }
 
         }
@@ -130,7 +125,7 @@ pub trait Reader : Read {
     }
 
     /// Reads a signed little-endian short from this Reader
-    fn read_signed_le_short(&mut self) -> Result<i16, &'static str> {
+    fn read_signed_le_short(&mut self) -> Result<i16, Error> {
 
         let mut raw_buffer = vec![0u8; 2];
 
@@ -143,12 +138,11 @@ pub trait Reader : Read {
                         ((raw_buffer[1] as i16) << 8)
                     );
                 } else {
-                    return Err("Could not read a signed LE short")
+                    return Err(Error::new(ErrorKind::Other, "Could not read two bytes"));
                 }
             },
             Err(error) => {
-                error!("Got an error while reading a signed LE short! {}", error);
-                return Err("Error while reading a signed LE short, check log output");
+                return Err(error);
             }
 
         }
@@ -156,7 +150,7 @@ pub trait Reader : Read {
     }
 
     /// Reads an unsigned big-endian integer from this Reader
-    fn read_unsigned_be_int(&mut self) -> Result<u32, &'static str> {
+    fn read_unsigned_be_int(&mut self) -> Result<u32, Error> {
 
         let mut raw_buffer = vec![0u8; 4];
 
@@ -171,12 +165,11 @@ pub trait Reader : Read {
                         raw_buffer[3] as u32
                     );
                 } else {
-                    return Err("Could not read an unsigned BE int")
+                    return Err(Error::new(ErrorKind::Other, "Could not read four bytes"));
                 }
             },
             Err(error) => {
-                error!("Got an error while reading an unsigned BE int! {}", error);
-                return Err("Error while reading an unsigned BE int, check log output");
+                return Err(error);
             }
 
         }
@@ -184,7 +177,7 @@ pub trait Reader : Read {
     }
 
     /// Reads an unsigned little-endian integer from this Reader
-    fn read_unsigned_le_int(&mut self) -> Result<u32, &'static str> {
+    fn read_unsigned_le_int(&mut self) -> Result<u32, Error> {
 
         let mut raw_buffer = vec![0u8; 4];
 
@@ -199,12 +192,11 @@ pub trait Reader : Read {
                         ((raw_buffer[3] as u32) << 24)
                     );
                 } else {
-                    return Err("Could not read an unsigned LE int")
+                    return Err(Error::new(ErrorKind::Other, "Could not read four bytes"));
                 }
             },
             Err(error) => {
-                error!("Got an error while reading an unsigned LE int! {}", error);
-                return Err("Error while reading an unsigned LE int, check log output");
+                return Err(error);
             }
 
         }
@@ -212,7 +204,7 @@ pub trait Reader : Read {
     }
 
     /// Reads a signed big-endian integer from this Reader
-    fn read_signed_be_int(&mut self) -> Result<i32, &'static str> {
+    fn read_signed_be_int(&mut self) -> Result<i32, Error> {
 
         let mut raw_buffer = vec![0u8; 4];
 
@@ -227,12 +219,11 @@ pub trait Reader : Read {
                         raw_buffer[3] as i32
                     );
                 } else {
-                    return Err("Could not read a signed BE int")
+                    return Err(Error::new(ErrorKind::Other, "Could not read four bytes"));
                 }
             },
             Err(error) => {
-                error!("Got an error while reading a signed BE int! {}", error);
-                return Err("Error while reading a signed BE int, check log output");
+                return Err(error);
             }
 
         }
@@ -240,7 +231,7 @@ pub trait Reader : Read {
     }
 
     /// Reads a signed little-endian integer from this Reader
-    fn read_signed_le_int(&mut self) -> Result<i32, &'static str> {
+    fn read_signed_le_int(&mut self) -> Result<i32, Error> {
 
         let mut raw_buffer = vec![0u8; 4];
 
@@ -255,12 +246,11 @@ pub trait Reader : Read {
                         ((raw_buffer[3] as i32) << 24)
                     );
                 } else {
-                    return Err("Could not read a signed LE int")
+                    return Err(Error::new(ErrorKind::Other, "Could not read four bytes"));
                 }
             },
             Err(error) => {
-                error!("Got an error while reading a signed LE int! {}", error);
-                return Err("Error while reading a signed LE int, check log output");
+                return Err(error);
             }
 
         }
@@ -268,7 +258,7 @@ pub trait Reader : Read {
     }
 
     /// Reads an unsigned big-endian long from this Reader
-    fn read_unsigned_be_long(&mut self) -> Result<u64, &'static str> {
+    fn read_unsigned_be_long(&mut self) -> Result<u64, Error> {
 
         let mut raw_buffer = vec![0u8; 8];
 
@@ -287,12 +277,11 @@ pub trait Reader : Read {
                         raw_buffer[7] as u64
                     );
                 } else {
-                    return Err("Could not read an unsigned BE long")
+                    return Err(Error::new(ErrorKind::Other, "Could not read eight bytes"));
                 }
             },
             Err(error) => {
-                error!("Got an error while reading an unsigned BE long! {}", error);
-                return Err("Error while reading an unsigned BE long, check log output");
+                return Err(error);
             }
 
         }
@@ -300,7 +289,7 @@ pub trait Reader : Read {
     }
 
     /// Reads a signed big-endian long from this Reader
-    fn read_signed_be_long(&mut self) -> Result<i64, &'static str> {
+    fn read_signed_be_long(&mut self) -> Result<i64, Error> {
 
         let mut raw_buffer = vec![0u8; 8];
 
@@ -319,12 +308,11 @@ pub trait Reader : Read {
                         raw_buffer[7] as i64
                     );
                 } else {
-                    return Err("Could not read a signed BE long")
+                    return Err(Error::new(ErrorKind::Other, "Could not read eight bytes"));
                 }
             },
             Err(error) => {
-                error!("Got an error while reading a signed BE long! {}", error);
-                return Err("Error while reading a signed BE long, check log output");
+                return Err(error);
             }
 
         }
@@ -332,7 +320,7 @@ pub trait Reader : Read {
     }
 
     /// Reads an unsigned little-endian long from this Reader
-    fn read_unsigned_le_long(&mut self) -> Result<u64, &'static str> {
+    fn read_unsigned_le_long(&mut self) -> Result<u64, Error> {
 
         let mut raw_buffer = vec![0u8; 8];
 
@@ -351,12 +339,11 @@ pub trait Reader : Read {
                         ((raw_buffer[7] as u64) << 56)
                     );
                 } else {
-                    return Err("Could not read an unsigned LE long")
+                    return Err(Error::new(ErrorKind::Other, "Could not read eight bytes"));
                 }
             },
             Err(error) => {
-                error!("Got an error while reading an unsigned LE long! {}", error);
-                return Err("Error while reading an unsigned LE long, check log output");
+                return Err(error);
             }
 
         }
@@ -364,7 +351,7 @@ pub trait Reader : Read {
     }
 
     /// Reads a signed little-endian long from this Reader
-    fn read_signed_le_long(&mut self) -> Result<i64, &'static str> {
+    fn read_signed_le_long(&mut self) -> Result<i64, Error> {
 
         let mut raw_buffer = vec![0u8; 8];
 
@@ -383,12 +370,11 @@ pub trait Reader : Read {
                         ((raw_buffer[7] as i64) << 56)
                     );
                 } else {
-                    return Err("Could not read a signed LE long")
+                    return Err(Error::new(ErrorKind::Other, "Could not read eight bytes"));
                 }
             },
             Err(error) => {
-                error!("Got an error while reading a signed LE long! {}", error);
-                return Err("Error while reading a signed LE long, check log output");
+                return Err(error);
             }
 
         }

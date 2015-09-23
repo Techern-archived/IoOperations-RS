@@ -9,6 +9,3 @@ documentation = "http://techern.github.io/IoOperations-RS"
 readme = "README.md"
 keywords = ["IO", "TCP"]
 license = "MIT"
-
-[dependencies]
-log = "0.3"

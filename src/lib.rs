@@ -1,8 +1,5 @@
 //! Various I/O operations for Rust
 
-#[macro_use]
-extern crate log;
-
 pub mod reader;
 
 pub mod writer;
