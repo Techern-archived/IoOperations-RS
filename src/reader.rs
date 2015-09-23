@@ -16,7 +16,7 @@ pub trait Reader : Read {
                 if count == 1 {
                     return Ok(raw_buffer[0]);
                 } else {
-                    return Err(Error::new(ErrorKind::Other, "Could not read one byte"));
+                    return Err(Error::new(ErrorKind::Other, "Could not read one byte (end of stream?)"));
                 }
             },
             Err(error) => {
@@ -38,7 +38,7 @@ pub trait Reader : Read {
                 if count == 1 {
                     return Ok(raw_buffer[0] as i8);
                 } else {
-                    return Err(Error::new(ErrorKind::Other, "Could not read one byte"));
+                    return Err(Error::new(ErrorKind::Other, "Could not read one byte (end of stream?)"));
                 }
             },
             Err(error) => {
@@ -63,7 +63,7 @@ pub trait Reader : Read {
                         raw_buffer[1] as u16
                     );
                 } else {
-                    return Err(Error::new(ErrorKind::Other, "Could not read two bytes"));
+                    return Err(Error::new(ErrorKind::Other, "Could not read two bytes (end of stream?)"));
                 }
             },
             Err(error) => {
@@ -88,7 +88,7 @@ pub trait Reader : Read {
                         ((raw_buffer[1] as u16) << 8)
                     );
                 } else {
-                    return Err(Error::new(ErrorKind::Other, "Could not read two bytes"));
+                    return Err(Error::new(ErrorKind::Other, "Could not read two bytes (end of stream?)"));
                 }
             },
             Err(error) => {
@@ -113,7 +113,7 @@ pub trait Reader : Read {
                         raw_buffer[1] as i16
                     );
                 } else {
-                    return Err(Error::new(ErrorKind::Other, "Could not read two bytes"));
+                    return Err(Error::new(ErrorKind::Other, "Could not read two bytes (end of stream?)"));
                 }
             },
             Err(error) => {
@@ -138,7 +138,7 @@ pub trait Reader : Read {
                         ((raw_buffer[1] as i16) << 8)
                     );
                 } else {
-                    return Err(Error::new(ErrorKind::Other, "Could not read two bytes"));
+                    return Err(Error::new(ErrorKind::Other, "Could not read two bytes (end of stream?)"));
                 }
             },
             Err(error) => {
@@ -165,7 +165,7 @@ pub trait Reader : Read {
                         raw_buffer[3] as u32
                     );
                 } else {
-                    return Err(Error::new(ErrorKind::Other, "Could not read four bytes"));
+                    return Err(Error::new(ErrorKind::Other, "Could not read four bytes (end of stream?)"));
                 }
             },
             Err(error) => {
@@ -192,7 +192,7 @@ pub trait Reader : Read {
                         ((raw_buffer[3] as u32) << 24)
                     );
                 } else {
-                    return Err(Error::new(ErrorKind::Other, "Could not read four bytes"));
+                    return Err(Error::new(ErrorKind::Other, "Could not read four bytes (end of stream?)"));
                 }
             },
             Err(error) => {
@@ -219,7 +219,7 @@ pub trait Reader : Read {
                         raw_buffer[3] as i32
                     );
                 } else {
-                    return Err(Error::new(ErrorKind::Other, "Could not read four bytes"));
+                    return Err(Error::new(ErrorKind::Other, "Could not read four bytes (end of stream?)"));
                 }
             },
             Err(error) => {
@@ -246,7 +246,7 @@ pub trait Reader : Read {
                         ((raw_buffer[3] as i32) << 24)
                     );
                 } else {
-                    return Err(Error::new(ErrorKind::Other, "Could not read four bytes"));
+                    return Err(Error::new(ErrorKind::Other, "Could not read four bytes (end of stream?)"));
                 }
             },
             Err(error) => {
@@ -277,7 +277,7 @@ pub trait Reader : Read {
                         raw_buffer[7] as u64
                     );
                 } else {
-                    return Err(Error::new(ErrorKind::Other, "Could not read eight bytes"));
+                    return Err(Error::new(ErrorKind::Other, "Could not read eight bytes (end of stream?)"));
                 }
             },
             Err(error) => {
@@ -308,7 +308,7 @@ pub trait Reader : Read {
                         raw_buffer[7] as i64
                     );
                 } else {
-                    return Err(Error::new(ErrorKind::Other, "Could not read eight bytes"));
+                    return Err(Error::new(ErrorKind::Other, "Could not read eight bytes (end of stream?)"));
                 }
             },
             Err(error) => {
@@ -339,7 +339,7 @@ pub trait Reader : Read {
                         ((raw_buffer[7] as u64) << 56)
                     );
                 } else {
-                    return Err(Error::new(ErrorKind::Other, "Could not read eight bytes"));
+                    return Err(Error::new(ErrorKind::Other, "Could not read eight bytes (end of stream?)"));
                 }
             },
             Err(error) => {
@@ -370,7 +370,7 @@ pub trait Reader : Read {
                         ((raw_buffer[7] as i64) << 56)
                     );
                 } else {
-                    return Err(Error::new(ErrorKind::Other, "Could not read eight bytes"));
+                    return Err(Error::new(ErrorKind::Other, "Could not read eight bytes (end of stream?)"));
                 }
             },
             Err(error) => {
