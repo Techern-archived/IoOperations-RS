@@ -382,8 +382,7 @@ pub trait Reader : Read {
     }
 }
 
-impl Reader for ::std::io::Cursor<Vec<u8>> { }
-impl Reader for ::std::net::TcpStream { }
+impl<T> Reader for T where T: Read { }
 
 #[cfg(test)]
 mod tests {
