@@ -8,4 +8,4 @@ repository = "https://github.com/Techern/IoOperations-RS"
 documentation = "http://techern.github.io/IoOperations-RS"
 readme = "README.md"
 keywords = ["IO", "TCP"]
-license = "MIT"
+license = "MIT OR Apache-2.0"
