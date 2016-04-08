@@ -6,7 +6,7 @@ use std::io::{Read, Error, ErrorKind};
 pub trait Reader : Read {
 
     /// Reads an unsigned byte from this Reader
-    fn read_unsigned_byte(&mut self) -> Result<u8, Error> {
+    fn read_u8(&mut self) -> Result<u8, Error> {
 
         let mut raw_buffer = vec![0u8; 1];
 
@@ -28,7 +28,7 @@ pub trait Reader : Read {
     }
 
     /// Reads a signed byte from this Reader
-    fn read_signed_byte(&mut self) -> Result<i8, Error> {
+    fn read_i8(&mut self) -> Result<i8, Error> {
 
         let mut raw_buffer = vec![0u8; 1];
 
@@ -50,7 +50,7 @@ pub trait Reader : Read {
     }
 
     /// Reads an unsigned big-endian short from this Reader
-    fn read_unsigned_be_short(&mut self) -> Result<u16, Error> {
+    fn read_be_u16(&mut self) -> Result<u16, Error> {
 
         let mut raw_buffer = vec![0u8; 2];
 
@@ -75,7 +75,7 @@ pub trait Reader : Read {
     }
 
     /// Reads an unsigned little-endian short from this Reader
-    fn read_unsigned_le_short(&mut self) -> Result<u16, Error> {
+    fn read_le_u16(&mut self) -> Result<u16, Error> {
 
         let mut raw_buffer = vec![0u8; 2];
 
@@ -100,7 +100,7 @@ pub trait Reader : Read {
     }
 
     /// Reads a signed big-endian short from this Reader
-    fn read_signed_be_short(&mut self) -> Result<i16, Error> {
+    fn read_be_i16(&mut self) -> Result<i16, Error> {
 
         let mut raw_buffer = vec![0u8; 2];
 
@@ -125,7 +125,7 @@ pub trait Reader : Read {
     }
 
     /// Reads a signed little-endian short from this Reader
-    fn read_signed_le_short(&mut self) -> Result<i16, Error> {
+    fn read_le_i16(&mut self) -> Result<i16, Error> {
 
         let mut raw_buffer = vec![0u8; 2];
 
@@ -150,7 +150,7 @@ pub trait Reader : Read {
     }
 
     /// Reads an unsigned big-endian integer from this Reader
-    fn read_unsigned_be_int(&mut self) -> Result<u32, Error> {
+    fn read_be_u32(&mut self) -> Result<u32, Error> {
 
         let mut raw_buffer = vec![0u8; 4];
 
@@ -177,7 +177,7 @@ pub trait Reader : Read {
     }
 
     /// Reads an unsigned little-endian integer from this Reader
-    fn read_unsigned_le_int(&mut self) -> Result<u32, Error> {
+    fn read_le_u32(&mut self) -> Result<u32, Error> {
 
         let mut raw_buffer = vec![0u8; 4];
 
@@ -204,7 +204,7 @@ pub trait Reader : Read {
     }
 
     /// Reads a signed big-endian integer from this Reader
-    fn read_signed_be_int(&mut self) -> Result<i32, Error> {
+    fn read_be_i32(&mut self) -> Result<i32, Error> {
 
         let mut raw_buffer = vec![0u8; 4];
 
@@ -231,7 +231,7 @@ pub trait Reader : Read {
     }
 
     /// Reads a signed little-endian integer from this Reader
-    fn read_signed_le_int(&mut self) -> Result<i32, Error> {
+    fn read_le_i32(&mut self) -> Result<i32, Error> {
 
         let mut raw_buffer = vec![0u8; 4];
 
@@ -258,7 +258,7 @@ pub trait Reader : Read {
     }
 
     /// Reads an unsigned big-endian long from this Reader
-    fn read_unsigned_be_long(&mut self) -> Result<u64, Error> {
+    fn read_be_u64(&mut self) -> Result<u64, Error> {
 
         let mut raw_buffer = vec![0u8; 8];
 
@@ -289,7 +289,7 @@ pub trait Reader : Read {
     }
 
     /// Reads a signed big-endian long from this Reader
-    fn read_signed_be_long(&mut self) -> Result<i64, Error> {
+    fn read_be_i64(&mut self) -> Result<i64, Error> {
 
         let mut raw_buffer = vec![0u8; 8];
 
@@ -320,7 +320,7 @@ pub trait Reader : Read {
     }
 
     /// Reads an unsigned little-endian long from this Reader
-    fn read_unsigned_le_long(&mut self) -> Result<u64, Error> {
+    fn read_le_u64(&mut self) -> Result<u64, Error> {
 
         let mut raw_buffer = vec![0u8; 8];
 
@@ -351,7 +351,7 @@ pub trait Reader : Read {
     }
 
     /// Reads a signed little-endian long from this Reader
-    fn read_signed_le_long(&mut self) -> Result<i64, Error> {
+    fn read_le_i64(&mut self) -> Result<i64, Error> {
 
         let mut raw_buffer = vec![0u8; 8];
 
@@ -396,7 +396,7 @@ mod tests {
 
         let mut vector = Cursor::new(vec![0u8; 0]);
 
-        assert!(vector.read_unsigned_byte().is_err());
+        assert!(vector.read_u8().is_err());
 
     }
 
@@ -405,7 +405,7 @@ mod tests {
 
         let mut vector = Cursor::new(vec![0u8; 0]);
 
-        assert!(vector.read_signed_byte().is_err());
+        assert!(vector.read_i8().is_err());
 
     }
 
@@ -414,7 +414,7 @@ mod tests {
 
         let mut vector = Cursor::new(vec![0u8; 0]);
 
-        assert!(vector.read_unsigned_le_short().is_err());
+        assert!(vector.read_le_u16().is_err());
 
     }
 
@@ -423,7 +423,7 @@ mod tests {
 
         let mut vector = Cursor::new(vec![0u8; 0]);
 
-        assert!(vector.read_signed_le_short().is_err());
+        assert!(vector.read_le_i16().is_err());
 
     }
 
@@ -432,7 +432,7 @@ mod tests {
 
         let mut vector = Cursor::new(vec![0u8; 0]);
 
-        assert!(vector.read_unsigned_be_short().is_err());
+        assert!(vector.read_be_u16().is_err());
 
     }
 
@@ -441,7 +441,7 @@ mod tests {
 
         let mut vector = Cursor::new(vec![0u8; 0]);
 
-        assert!(vector.read_signed_be_short().is_err());
+        assert!(vector.read_be_i16().is_err());
 
     }
 
@@ -450,7 +450,7 @@ mod tests {
 
         let mut vector = Cursor::new(vec![0u8; 0]);
 
-        assert!(vector.read_unsigned_be_int().is_err());
+        assert!(vector.read_be_u32().is_err());
 
     }
 
@@ -459,7 +459,7 @@ mod tests {
 
         let mut vector = Cursor::new(vec![0u8; 0]);
 
-        assert!(vector.read_signed_be_int().is_err());
+        assert!(vector.read_be_i32().is_err());
 
     }
 
@@ -468,7 +468,7 @@ mod tests {
 
         let mut vector = Cursor::new(vec![0u8; 0]);
 
-        assert!(vector.read_unsigned_le_int().is_err());
+        assert!(vector.read_le_u32().is_err());
 
     }
 
@@ -477,7 +477,7 @@ mod tests {
 
         let mut vector = Cursor::new(vec![0u8; 0]);
 
-        assert!(vector.read_signed_le_int().is_err());
+        assert!(vector.read_le_i32().is_err());
 
     }
 
@@ -486,7 +486,7 @@ mod tests {
 
         let mut vector = Cursor::new(vec![0u8; 0]);
 
-        assert!(vector.read_unsigned_be_long().is_err());
+        assert!(vector.read_be_u64().is_err());
 
     }
 
@@ -495,7 +495,7 @@ mod tests {
 
         let mut vector = Cursor::new(vec![0u8; 0]);
 
-        assert!(vector.read_signed_be_long().is_err());
+        assert!(vector.read_be_i64().is_err());
 
     }
 
@@ -504,7 +504,7 @@ mod tests {
 
         let mut vector = Cursor::new(vec![0u8; 0]);
 
-        assert!(vector.read_unsigned_le_long().is_err());
+        assert!(vector.read_le_u64().is_err());
 
     }
 
@@ -513,7 +513,7 @@ mod tests {
 
         let mut vector = Cursor::new(vec![0u8; 0]);
 
-        assert!(vector.read_signed_le_long().is_err());
+        assert!(vector.read_le_i64().is_err());
 
     }
 
